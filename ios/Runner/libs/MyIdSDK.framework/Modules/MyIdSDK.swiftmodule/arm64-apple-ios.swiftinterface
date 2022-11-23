@@ -1,0 +1,87 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.6.1 (swiftlang-5.6.0.323.66 clang-1316.0.20.12)
+// swift-module-flags: -target arm64-apple-ios10.0 -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name MyIdSDK
+import AVFoundation
+import Alamofire
+import CoreGraphics
+import CoreVideo
+import Foundation
+import MBProgressHUD
+import MLImage
+import MLKit
+@_exported import MyIdSDK
+import Sentry
+import Swift
+import UIKit
+import _Concurrency
+@objc public enum MyIdLocale : Swift.Int {
+  case RU = 0
+  case EN
+  case UZ
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@_inheritsConvenienceInitializers @objc public class MyIdResult : ObjectiveC.NSObject {
+  @objc public var code: Swift.String?
+  @objc public var image: UIKit.UIImage?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class MyIdException : ObjectiveC.NSObject {
+  @objc public var code: Swift.String?
+  @objc public var message: Swift.String?
+  @objc override dynamic public init()
+  @objc deinit
+}
+@objc public enum MyIdEntryType : Swift.Int {
+  case AUTH = 0
+  case FACE
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public enum MyIdBuildMode : Swift.Int {
+  case DEBUG = 0
+  case PRODUCTION
+  public init?(rawValue: Swift.Int)
+  public typealias RawValue = Swift.Int
+  public var rawValue: Swift.Int {
+    get
+  }
+}
+@objc public protocol MyIdSdkDelegate {
+  @objc func myidOnSuccess(result: MyIdSDK.MyIdResult)
+  @objc func myidOnError(exception: MyIdSDK.MyIdException)
+  @objc func myidOnUserExited()
+}
+@_inheritsConvenienceInitializers @objc public class MyIdSdk : ObjectiveC.NSObject {
+  @objc public class func start(withConfigureOptions configureOptions: @escaping (_ options: MyIdSDK.MyIdOptions?) -> Swift.Void, withDelegate delegate: MyIdSDK.MyIdSdkDelegate)
+  @objc override dynamic public init()
+  @objc deinit
+}
+@_inheritsConvenienceInitializers @objc public class MyIdOptions : ObjectiveC.NSObject {
+  @objc public var clientId: Swift.String?
+  @objc public var passportData: Swift.String?
+  @objc public var dateOfBirth: Swift.String?
+  @objc public var externalId: Swift.String?
+  @objc public var withPhoto: Swift.Bool
+  @objc public var entryType: MyIdSDK.MyIdEntryType
+  @objc public var buildMode: MyIdSDK.MyIdBuildMode
+  @objc public var locale: MyIdSDK.MyIdLocale
+  @objc override dynamic public init()
+  @objc deinit
+}
+extension MyIdSDK.MyIdLocale : Swift.Equatable {}
+extension MyIdSDK.MyIdLocale : Swift.Hashable {}
+extension MyIdSDK.MyIdLocale : Swift.RawRepresentable {}
+extension MyIdSDK.MyIdEntryType : Swift.Equatable {}
+extension MyIdSDK.MyIdEntryType : Swift.Hashable {}
+extension MyIdSDK.MyIdEntryType : Swift.RawRepresentable {}
+extension MyIdSDK.MyIdBuildMode : Swift.Equatable {}
+extension MyIdSDK.MyIdBuildMode : Swift.Hashable {}
+extension MyIdSDK.MyIdBuildMode : Swift.RawRepresentable {}
