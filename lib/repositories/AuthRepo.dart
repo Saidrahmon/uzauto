@@ -6,7 +6,7 @@ import 'package:uzauto/models/User.dart';
 
 class AuthRepo {
   Future<String> getAccessToken(String code) async {
-    var postUri = Uri.parse("https://faced.track.uz/api/v1/oauth2/access-token");
+    var postUri = Uri.parse("${Config.faceIdBaseUrl}/api/v1${Config.getAccessToken}");
 
     var request = http.MultipartRequest("POST", postUri);
 
@@ -17,16 +17,16 @@ class AuthRepo {
     http.Response response = await http.Response.fromStream(await request.send());
 
     if (response.statusCode == 200) {
-      return jsonDecode((response.body))['access_token'];
+      return jsonDecode(utf8.decode(response.bodyBytes))['access_token'];
     }
     throw ("Error");
   }
 
   Future<UserModel> getUserInfo(String token) async {
-    http.Response response = await http.get(Uri.parse("https://faced.track.uz/api/v1/users/me"), headers: {"Authorization": "Bearer $token"});
+    http.Response response = await http.get(Uri.parse("${Config.faceIdBaseUrl}/api/v1${Config.login}"), headers: {"Authorization": "Bearer $token"});
 
     if (response.statusCode == 200) {
-      return UserModel.fromJson(jsonDecode(response.body)['profile']['common_data']);
+      return UserModel.fromJson(jsonDecode(utf8.decode(response.bodyBytes))['profile']['common_data']);
     }
     throw ("Error");
   }

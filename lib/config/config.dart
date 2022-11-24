@@ -4,4 +4,9 @@ class Config{
   static String clientSecret = "ftQZfpUl0S0p08aU6jDmgGilw4kRidR3W0hLO8TvPqRXiJC5Bs0uERobc1YDwieetZmxBWVQFzCjzolgDMiJ1yONfZgMesIy04BG";
   static String grantType = "authorization_code";
 
+
+  static String faceIdBaseUrl = "https://faced.track.uz";
+  static String getAccessToken = "/oauth2/access-token";
+  static String login = "/users/me";
+
 }
